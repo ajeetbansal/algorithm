@@ -1,12 +1,12 @@
 package aj.algorithm.recursion;
 
+import java.util.Arrays;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CoinChange {
 
     private TreeSet<Integer> denominations;
+    int[] changeCount;
 
     public static void main(String[] args) {
         CoinChange coinChange = new CoinChange(1,3,9,10);
@@ -19,12 +19,25 @@ public class CoinChange {
             this.denominations.add(denominations[i]);
     }
 
-    public Integer calculateChange(int total) {
+    public int calculateChange(int total) {
+        changeCount = new int[total];
+        int minNumCoins = calculateChangeInternal(total);
+        System.out.println("Arrays.toString(changeCount) = " + Arrays.toString(changeCount));
+        return minNumCoins;
+    }
+    private int calculateChangeInternal(int total) {
         if(total == 0)
             return 0;
-        return denominations.stream()
+        if(changeCount[total-1] != 0)
+        {
+            System.out.println("Memoization kicked in");
+            return changeCount[total-1];
+        }
+        int minNumCoins= denominations.stream()
                 .filter(denomination -> denomination <= total)
-                .map(denomination -> calculateChange(total - denomination))
+                .map(denomination -> calculateChangeInternal(total - denomination))
                 .reduce((d1,d2)->Math.min(d1,d2)).get() + 1;
+        changeCount[total-1] = minNumCoins;
+        return minNumCoins;
     }
 }
