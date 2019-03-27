@@ -13,6 +13,7 @@ public class LengthOfLongestSubstring {
         System.out.println("lengthOfLongestSubstring(\"bbaaa\") = " + lengthOfLongestSubstring("bbaaa"));
         System.out.println("lengthOfLongestSubstring(\"bbbbb\") = " + lengthOfLongestSubstring("bbbbb"));
         System.out.println("lengthOfLongestSubstring(\"dvdf\") = " + lengthOfLongestSubstring("dvdf"));
+        System.out.println("lengthOfLongestSubstring(\"pwwkew\") = " + lengthOfLongestSubstring("pwwkew"));
         System.out.println("lengthOfLongestSubstring(\"\") = " + lengthOfLongestSubstring(""));
     }
 //    public static int lengthOfLongestSubstring(String s) {
@@ -35,11 +36,13 @@ public class LengthOfLongestSubstring {
         if(s==null || s.isEmpty())
             return 0;
         int maxLen = 0;
+        int currBeg = 0;
         Set<Character> maxSet = new HashSet<Character>();
         for(int i=0; i< s.length();) {
             Character nextChar = s.charAt(i);
             if(maxSet.contains(nextChar)){
-                maxSet.remove(nextChar);
+                maxSet.remove(s.charAt(currBeg));
+                currBeg++;
             } else {
                 maxSet.add(nextChar);
                 if(maxSet.size() > maxLen)
