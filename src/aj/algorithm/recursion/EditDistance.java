@@ -1,3 +1,6 @@
+/*The Levenshtein distance between two words is the minimum number of single-character edits
+(i.e. insertions, deletions or substitutions) required to change one word into the other.
+ */
 package aj.algorithm.recursion;
 
 public class EditDistance {

@@ -1,3 +1,4 @@
+/* Coin change-making problem (unlimited supply of coins) */
 package aj.algorithm.recursion;
 
 import java.util.Arrays;
