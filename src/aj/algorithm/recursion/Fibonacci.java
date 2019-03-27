@@ -19,7 +19,7 @@ public class Fibonacci {
 
     private int fibonacci(int n) {
         if(fibNumbers[n-1] != -1)
-            return fibNumbers[n-1];
+            return fibNumbers[n-1]; //Memoization
         int fibN = fibonacci(n-1) + fibonacci(n-2);
         fibNumbers[n-1] = fibN;
         return fibN;
