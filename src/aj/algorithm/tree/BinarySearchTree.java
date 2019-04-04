@@ -26,33 +26,26 @@ public class BinarySearchTree {
     }
 
     public void build(int[] arr) {
-        int n = arr.length;
-        if( n > 0)
-            root = add(root, arr[0]);
-        for(int i=1;i < arr.length; i++) {
-            add(root, arr[i]);
+        for(int i=0;i < arr.length; i++) {
+            root = add(root, arr[i]);
         }
     }
 
     private Node add(Node root, int value) {
         if(root==null){
-            Node newNode = new Node();
-            newNode.value = value;
-            root = newNode;
+            root = new Node();
+            root.value = value;
             return root;
         }
         if(value < root.value){
-            Node newNode = add(root.left, value);
-            if(newNode != null)
-                root.left = newNode;
+            root.left = add(root.left, value);
         }
         if(value > root.value){
-            Node newNode = add(root.right, value);
-            if(newNode != null)
-                root.right = newNode;
+            root.right = add(root.right, value);
         }
-        return null;
+        return root;
     }
+
     public boolean search(int value) {
         return search(root, value);
     }
@@ -66,9 +59,6 @@ public class BinarySearchTree {
         if(value < root.value){
             return search(root.left, value);
         }
-        if(value > root.value){
-            return search(root.right, value);
-        }
-        return false;
+        return search(root.right, value);
     }
 }
