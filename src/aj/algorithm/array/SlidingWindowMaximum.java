@@ -1,5 +1,7 @@
 /**
- * Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
+ * Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right.
+ * You can only see the k numbers in the window.
+ * Each time the sliding window moves right by one position. Return the max sliding window.
 
  Example:
 
@@ -30,11 +32,11 @@ public class SlidingWindowMaximum {
             while(!dq.isEmpty() && nums[i] > nums[dq.getLast()]){
                 dq.removeLast();
             }
-            while(!dq.isEmpty() && dq.getFirst() <= i-k)
+            if(!dq.isEmpty() && dq.getFirst() <= i-k)
                 dq.removeFirst();
             dq.addLast(i);
             if(i >= k-1) {
-                ret[i-k+1] = nums[dq.getFirst()];
+                ret[i-(k-1)] = nums[dq.getFirst()];
             }
         }
 
